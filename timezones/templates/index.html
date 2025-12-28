@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Timezones Converter</title>
+  </head>
+  <body>
+    <h1>Convert a time to multiple time zones</h1>
+    <form method="post">
+      <label for="time">Time (use browser-local or enter):</label>
+      <input type="datetime-local" id="time" name="time">
+      <br/>
+      <label for="base_tz">Base timezone:</label>
+      <select id="base_tz" name="base_tz">
+        <option value="UTC">UTC</option>
+        {% for tz in timezones[:50] %}
+          <option value="{{ tz }}">{{ tz }}</option>
+        {% endfor %}
+      </select>
+      <br/>
+      <label for="zones">Target time zones (type to filter):</label>
+        <br/>
+        <div id="zones-container">
+          <div class="zone-row">
+            <input list="tz-list" name="zones" class="zone-input" placeholder="Type a timezone (e.g. Tokyo)">
+            <button type="button" class="remove-zone" onclick="removeZone(this)">−</button>
+          </div>
+          <div class="zone-row">
+            <input list="tz-list" name="zones" class="zone-input" placeholder="Type a timezone (e.g. New_York)">
+            <button type="button" class="remove-zone" onclick="removeZone(this)">−</button>
+          </div>
+        </div>
+        <datalist id="tz-list">
+          {% for tz in timezones %}
+            <option value="{{ tz }}"></option>
+          {% endfor %}
+        </datalist>
+        <br/>
+        <button type="button" id="add-zone">Add timezone</button>
+        <button type="submit">Convert</button>
+    </form>
+    <p>Tip: If you leave the time blank the current time in the base timezone will be used.</p>
+
+    <style>
+      .zone-row { margin: 6px 0; display: flex; gap: 8px; align-items: center; }
+      .zone-input { width: 360px; padding: 6px; }
+      .remove-zone { padding: 6px 10px; }
+    </style>
+
+    <script>
+      const addBtn = document.getElementById('add-zone');
+      addBtn.addEventListener('click', () => {
+        const container = document.getElementById('zones-container');
+        const row = document.createElement('div');
+        row.className = 'zone-row';
+        row.innerHTML = `
+          <input list="tz-list" name="zones" class="zone-input" placeholder="Type a timezone">
+          <button type="button" class="remove-zone" onclick="removeZone(this)">−</button>
+        `;
+        container.appendChild(row);
+      });
+
+      function removeZone(btn) {
+        const row = btn.closest('.zone-row');
+        const container = document.getElementById('zones-container');
+        if (container.querySelectorAll('.zone-row').length > 1) {
+          row.remove();
+        } else {
+          // clear the last input instead of removing
+          row.querySelector('.zone-input').value = '';
+        }
+      }
+    </script>
+  </body>
+</html>
