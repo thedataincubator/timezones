@@ -6,16 +6,18 @@
   </head>
   <body>
     <table border="1" cellpadding="6">
-      <tr><th>Timezone</th><th>Local time</th></tr>
-      <!-- include the base timezone as the first row -->
       <tr>
-        <td>{{ base_tz }}</td>
-        <td>{{ base_dt }}</td>
+        <th>Input time (base)</th>
+        {% for tz in headers %}
+          <th>{{ tz }}</th>
+        {% endfor %}
       </tr>
-      {% for tz, t in results %}
+      {% for base_display, cells in rows %}
       <tr>
-        <td>{{ tz }}</td>
-        <td>{{ t }}</td>
+        <td>{{ base_display }}</td>
+        {% for cell in cells %}
+          <td>{{ cell }}</td>
+        {% endfor %}
       </tr>
       {% endfor %}
     </table>

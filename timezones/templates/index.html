@@ -7,8 +7,14 @@
   <body>
     <h1>Convert a time to multiple time zones</h1>
     <form method="post">
-      <label for="time">Time (use browser-local or enter):</label>
-      <input type="datetime-local" id="time" name="time">
+      <label for="times">Times (use browser-local or enter multiple):</label>
+        <div id="times-container">
+          <div class="time-row">
+            <input type="datetime-local" name="times" class="time-input">
+            <button type="button" class="remove-time" onclick="removeTime(this)">−</button>
+          </div>
+        </div>
+        <button type="button" id="add-time">Add time</button>
       <br/>
       <label for="base_tz">Base timezone:</label>
       <input list="tz-list" id="base_tz" name="base_tz" placeholder="Type base timezone (e.g. Europe/London)">
@@ -43,8 +49,30 @@
     </style>
 
     <script>
+      // time inputs add/remove
+      const addTimeBtn = document.getElementById('add-time');
+      addTimeBtn && addTimeBtn.addEventListener('click', () => {
+        const container = document.getElementById('times-container');
+        const row = document.createElement('div');
+        row.className = 'time-row';
+        row.innerHTML = `
+          <input type="datetime-local" name="times" class="time-input">
+          <button type="button" class="remove-time" onclick="removeTime(this)">−</button>
+        `;
+        container.appendChild(row);
+      });
+
+      function removeTime(btn) {
+        const row = btn.closest('.time-row');
+        const container = document.getElementById('times-container');
+        if (container.querySelectorAll('.time-row').length > 1) {
+          row.remove();
+        } else {
+          row.querySelector('.time-input').value = '';
+        }
+      }
       const addBtn = document.getElementById('add-zone');
-      addBtn.addEventListener('click', () => {
+      addBtn && addBtn.addEventListener('click', () => {
         const container = document.getElementById('zones-container');
         const row = document.createElement('div');
         row.className = 'zone-row';
