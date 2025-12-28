@@ -5,9 +5,13 @@
     <title>Conversion Results</title>
   </head>
   <body>
-    <h1>Converted times (base: {{ base_tz }} — {{ base_dt }})</h1>
     <table border="1" cellpadding="6">
       <tr><th>Timezone</th><th>Local time</th></tr>
+      <!-- include the base timezone as the first row -->
+      <tr>
+        <td>{{ base_tz }}</td>
+        <td>{{ base_dt }}</td>
+      </tr>
       {% for tz, t in results %}
       <tr>
         <td>{{ tz }}</td>

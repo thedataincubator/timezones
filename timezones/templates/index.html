@@ -11,12 +11,7 @@
       <input type="datetime-local" id="time" name="time">
       <br/>
       <label for="base_tz">Base timezone:</label>
-      <select id="base_tz" name="base_tz">
-        <option value="UTC">UTC</option>
-        {% for tz in timezones[:50] %}
-          <option value="{{ tz }}">{{ tz }}</option>
-        {% endfor %}
-      </select>
+      <input list="tz-list" id="base_tz" name="base_tz" placeholder="Type base timezone (e.g. Europe/London)">
       <br/>
       <label for="zones">Target time zones (type to filter):</label>
         <br/>
