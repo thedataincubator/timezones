@@ -24,7 +24,7 @@ This was a lot of back-and-forth with copilot, at least partially because I was 
 1. For the inputs, I want people to be able to enter a city and have it look up the time zone for them (so they could enter "San Francsico" or "Mumbai, India" or "Frederick, MD"). Don't do the lookup live, allow them to enter a city and then convert it when the output is generated. Use a free API to look things up if possible
 1. run the app
 1. The city and timezone entries should use the same box, they shouldn't have separate lists
-    1. _the inital solution it came up with was two sets of input boxes: timezones and cities
+    1. _the inital solution it came up with was two sets of input boxes: timezones and cities_
 1. I'm getting "unrecoginzed location" for every city I try
     1. _I realized that it was just an issue of a missing username while copilot was "fixing" it by rewriting everything in a way that broke things_
 1. Undo whatever you just did
