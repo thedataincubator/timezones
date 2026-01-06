@@ -43,3 +43,13 @@ This was a lot of back-and-forth with copilot, at least partially because I was 
 1. yes
 1. There's a prompt missing from my history: I switched to the `weekday` branch here and asked it to print the weekday as well as the date, but I don't have the exact wording
 1. This is displaying the weekday in the base timezone, I need it for each timezone - conversions will often push into the next day
+1. _I switched back to the main branch, I'm abandoning the weekday one for the moment_
+1. Instead of displaying the results on a separate page, have them display at the bottom of the input page. Maintain the filled out time and timezone boxes, but please minimize how much javascript you use
+1. Make a nicer readme for the project. Make sure to have:
+    - a short introduction to what it does
+    - how to use the app
+    - how to setup and run it (including geonames for the city lookup)
+    - the project structure
+    - troubleshooting tips (like timezone format, what to do if city lookup fails, etc)
+    - Any other useful notes for potential users
+1. _I did some hand-editing to get things better arranged and to break the big monolith in app.py up a bit_
