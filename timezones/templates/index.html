@@ -11,32 +11,52 @@
       <h1 class="mb-4">Convert times across timezones</h1>
       <form method="post">
         <div class="mb-3">
-          <label for="times" class="form-label">Times (use browser-local or enter multiple):</label>
+          <label for="base_tz" class="form-label">Base timezone</label>
+          <input list="tz-list" id="base_tz" name="base_tz" class="form-control" placeholder="Type base timezone (e.g. Europe/London)" value="{{ base_tz or '' }}">
+        </div>
+
+        <div class="mb-3">
+          <label for="times" class="form-label">Times (blank times default to current time):</label>
           <div id="times-container">
-            <div class="time-row input-group mb-2">
-              <input type="datetime-local" name="times" class="form-control time-input">
-              <button type="button" class="btn btn-danger" onclick="removeTime(this)">−</button>
-            </div>
+            {% if times and times|length > 0 %}
+              {% for t in times %}
+                <div class="time-row input-group mb-2">
+                  <input type="datetime-local" name="times" class="form-control time-input" value="{{ t }}">
+                  <button type="button" class="btn btn-danger" onclick="removeTime(this)">−</button>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="time-row input-group mb-2">
+                <input type="datetime-local" name="times" class="form-control time-input">
+                <button type="button" class="btn btn-danger" onclick="removeTime(this)">−</button>
+              </div>
+            {% endif %}
           </div>
           <button type="button" id="add-time" class="btn btn-sm btn-secondary">Add time</button>
         </div>
 
-        <div class="mb-3">
-          <label for="base_tz" class="form-label">Base timezone</label>
-          <input list="tz-list" id="base_tz" name="base_tz" class="form-control" placeholder="Type base timezone (e.g. Europe/London)">
-        </div>
+
 
         <div class="mb-3">
           <label for="targets" class="form-label">Targets (timezone or city)</label>
           <div id="zones-container">
-            <div class="zone-row input-group mb-2">
-              <input list="tz-list" name="targets" class="form-control zone-input" placeholder="Type a timezone or city (e.g. Tokyo or Mumbai, India)">
-              <button type="button" class="btn btn-danger" onclick="removeZone(this)">−</button>
-            </div>
-            <div class="zone-row input-group mb-2">
-              <input list="tz-list" name="targets" class="form-control zone-input" placeholder="Type a timezone or city (e.g. San Francisco)">
-              <button type="button" class="btn btn-danger" onclick="removeZone(this)">−</button>
-            </div>
+            {% if targets and targets|length > 0 %}
+              {% for tgt in targets %}
+                <div class="zone-row input-group mb-2">
+                  <input list="tz-list" name="targets" class="form-control zone-input" placeholder="Type a timezone or city" value="{{ tgt }}">
+                  <button type="button" class="btn btn-danger" onclick="removeZone(this)">−</button>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="zone-row input-group mb-2">
+                <input list="tz-list" name="targets" class="form-control zone-input" placeholder="Type a timezone or city (e.g. Tokyo or Mumbai, India)">
+                <button type="button" class="btn btn-danger" onclick="removeZone(this)">−</button>
+              </div>
+              <div class="zone-row input-group mb-2">
+                <input list="tz-list" name="targets" class="form-control zone-input" placeholder="Type a timezone or city (e.g. San Francisco)">
+                <button type="button" class="btn btn-danger" onclick="removeZone(this)">−</button>
+              </div>
+            {% endif %}
           </div>
           <datalist id="tz-list">
             {% for tz in timezones %}
@@ -52,6 +72,39 @@
         <p class="text-muted">Tip: If you leave a time blank the current time in the base timezone will be used.</p>
 
       </form>
+
+      <!-- Results block -->
+      {% if headers and rows %}
+      <div class="mt-4">
+        <h2>Results</h2>
+        <div class="table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Input time (base)</th>
+                {% for tz in headers %}
+                  <th>{{ tz }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for base_display, cells in rows %}
+              <tr>
+                <td style="white-space:nowrap">{{ base_display }}</td>
+                {% for dt in cells %}
+                  <td>
+                    {% if dt %}
+                      <div>{{ dt }}</div>
+                    {% endif %}
+                  </td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
 
     <style>
       .zone-row { display: flex; gap: 8px; align-items: center; }

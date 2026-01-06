@@ -107,9 +107,11 @@ def index():
             rows_matrix.append((base_display, row_cells))
 
         header_labels = [h[0] for h in headers]
-        return render_template('results.html', headers=header_labels, rows=rows_matrix)
+        # render back to the index page with results; keep submitted values to prefill the form
+        return render_template('index.html', timezones=TIMEZONES, headers=header_labels, rows=rows_matrix, times=times_raw, targets=targets, base_tz=base_tz)
 
-    return render_template('index.html', timezones=TIMEZONES)
+    # on GET show empty form (provide defaults for template)
+    return render_template('index.html', timezones=TIMEZONES, times=[], targets=[], base_tz='')
 
 
 if __name__ == '__main__':
