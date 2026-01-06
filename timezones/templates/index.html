@@ -81,7 +81,7 @@
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                <th>Input time (base)</th>
+                <!--<th>Input time (base)</th> -->
                 {% for tz in headers %}
                   <th>{{ tz }}</th>
                 {% endfor %}
@@ -90,7 +90,7 @@
             <tbody>
               {% for base_display, cells in rows %}
               <tr>
-                <td style="white-space:nowrap">{{ base_display }}</td>
+                <!--<td style="white-space:nowrap">{{ base_display }}</td> -->
                 {% for dt in cells %}
                   <td>
                     {% if dt %}
