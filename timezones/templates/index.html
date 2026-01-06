@@ -131,6 +131,12 @@
         container.appendChild(row);
       });
 
+      // Set default timezone to browser timezone if not set
+      {% if not base_tz %}
+        const browserTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        document.getElementById('base_tz').value = browserTz;
+      {% endif %}
+
       function removeTime(btn) {
         const row = btn.closest('.time-row');
         const container = document.getElementById('times-container');
