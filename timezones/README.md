@@ -54,6 +54,13 @@ $env:GEONAMES_USERNAME = 'your_geonames_username'
 flask run
 ```
 
+3. Alternative: you can also run the app with
+```bash
+export GEONAMES_USERNAME=your_geonames_username
+cd timezones
+python app.py
+```
+
 Open http://127.0.0.1:5000/ in your browser.
 
 ## Geonames & City Lookup
