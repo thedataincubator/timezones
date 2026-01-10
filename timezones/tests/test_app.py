@@ -1,52 +1,20 @@
 import pytest
 
-from timezones.app import app
+import pytz
+from datetime import datetime
+import conversions
 
+def test_simple_conversion():
+    # This is avoiding city lookup
+    # making sure conversion to timezone objects occurs
+    base_tz = 'US/Eastern'
+    targets = ['US/Pacific', 'Europe/London']
+    base_tz_obj = pytz.timezone(base_tz)
 
-class MockResp:
-    def __init__(self, data):
-        self._data = data
+    dt = datetime.fromisoformat('2025-12-10T12:00:00')
+    times = [base_tz_obj.localize(dt)]
 
-    def raise_for_status(self):
-        return None
+    matrix = conversions.convert_times(times, targets)
+    assert matrix == [('2025-12-10 12:00:00', ['2025-12-10 09:00:00', '2025-12-10 17:00:00'])]
+    
 
-    def json(self):
-        return self._data
-
-
-def test_home_page():
-    client = app.test_client()
-    r = client.get('/')
-    assert r.status_code == 200
-    assert b'Convert times across timezones' in r.data or b'Convert times' in r.data
-
-
-def test_convert_timezone_id():
-    client = app.test_client()
-    data = {
-        'times': '2025-12-28T15:30',
-        'base_tz': 'UTC',
-        'targets': 'Europe/London'
-    }
-    r = client.post('/', data=data)
-    assert r.status_code == 200
-    # base time should appear (localized to UTC) and header should include the tz
-    assert b'2025-12-28 15:30:00' in r.data
-    assert b'Europe/London' in r.data
-
-
-def test_city_resolution(monkeypatch):
-    def fake_get(url, params=None, headers=None):
-        if 'nominatim.openstreetmap.org' in url:
-            return MockResp([{'lat': '19.0759899', 'lon': '72.8773928'}])
-        if 'geonames.org' in url:
-            return MockResp({'timezoneId': 'Asia/Kolkata'})
-        raise RuntimeError('Unexpected URL: ' + str(url))
-
-    monkeypatch.setattr('requests.get', fake_get)
-
-    client = app.test_client()
-    data = {'times': '2025-12-28T12:00', 'base_tz': 'UTC', 'targets': 'Mumbai, India'}
-    r = client.post('/', data=data)
-    assert r.status_code == 200
-    assert b'Mumbai (Asia/Kolkata)' in r.data

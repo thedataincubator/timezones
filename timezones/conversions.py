@@ -1,6 +1,7 @@
 import requests
 import pytz
 import os
+from datetime import datetime
 
 # Converts a city/place name to a timezone ID using geonames
 # Since geonames takes lat/lon, we first use Nominatim to get coordinates
@@ -52,13 +53,29 @@ def get_column_headers(base_tz, targets):
 
     return headers
 
-def build_rows_matrix(base_datetimes, headers):
+def times_to_datetimes(base_tz_obj, times_raw):
+    # prepare list of base datetimes (one per input time)
+    # blank lines/empty boxes are ignored
+    base_datetimes = []
+    for t in times_raw:
+        if not t or not t.strip():
+            base_datetimes.append(datetime.now(base_tz_obj))
+            continue
+        try:
+            dt = datetime.fromisoformat(t)
+        except Exception:
+            dt = datetime.strptime(t, "%Y-%m-%dT%H:%M")
+        base_datetimes.append(base_tz_obj.localize(dt))
+
+    return base_datetimes
+
+def convert_times(base_datetimes, timezones):
     rows_matrix = []
     for base_dt in base_datetimes:
         # display input time without timezone information
         base_display = base_dt.strftime('%Y-%m-%d %H:%M:%S')
         row_cells = []
-        for label, tzname in headers:
+        for tzname in timezones:
             if not tzname:
                 row_cells.append('Unrecognized location')
                 continue

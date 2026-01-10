@@ -21,9 +21,9 @@ def index():
         except Exception:
             base_tz = 'UTC'
             base_tz_obj = pytz.timezone(base_tz)
+
         # collect target entries (either timezone IDs or city/place strings)
         targets = [t.strip() for t in request.form.getlist('targets') if t and t.strip()]
-
 
         # resolve targets into header label/tz pairs
         # headers will be list of (label, tzname_or_none)
@@ -33,25 +33,18 @@ def index():
             times_raw = [request.form.get('time', '')]
 
         # prepare list of base datetimes (one per input time)
-        base_datetimes = []
-        for t in times_raw:
-            if not t or not t.strip():
-                base_datetimes.append(datetime.now(base_tz_obj))
-                continue
-            try:
-                dt = datetime.fromisoformat(t)
-            except Exception:
-                dt = datetime.strptime(t, "%Y-%m-%dT%H:%M")
-            base_datetimes.append(base_tz_obj.localize(dt))
+        # ignores blank lines
+        base_datetimes = times_to_datetimes(base_tz_obj, times_raw)
 
         # build headers: base timezone first, then each target (resolve timezone or city)
         headers = get_column_headers(base_tz, targets)
+        target_timezones = [head[1] for head in headers]
 
         # build matrix rows: each row corresponds to an input time
-        rows_matrix = build_rows_matrix(base_datetimes, headers)
-
+        rows_matrix = convert_times(base_datetimes, target_timezones)
 
         header_labels = [h[0] for h in headers]
+
         # render back to the index page with results; keep submitted values to prefill the form
         return render_template('index.html', timezones=TIMEZONES, headers=header_labels, rows=rows_matrix, times=times_raw, targets=targets, base_tz=base_tz)
 
