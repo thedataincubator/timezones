@@ -23,6 +23,12 @@ Tips:
 
 ## Quick Start
 
+### Create your own codespace
+
+https://codespaces.new/RichardOtt/VibeTZ?quickstart=1
+
+### Running the code
+
 1. Create and activate a virtual environment:
 
 ```bash
