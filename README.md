@@ -23,11 +23,8 @@ Tips:
 
 ## Quick Start
 
-### Create your own codespace
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/RichardOtt/VibeTZ?quickstart=1)
 
-https://codespaces.new/RichardOtt/VibeTZ?quickstart=1
-
-### Running the code
 
 1. Create and activate a virtual environment:
 
