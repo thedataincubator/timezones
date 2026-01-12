@@ -23,6 +23,9 @@ Tips:
 
 ## Quick Start
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/RichardOtt/VibeTZ?quickstart=1)
+
+
 1. Create and activate a virtual environment:
 
 ```bash
@@ -48,7 +51,7 @@ flask run
 On Windows (PowerShell):
 
 ```powershell
-$env:FLASK_APP = 'timezones/app.py'
+$env:FLASK_APP = 'app.py'
 $env:FLASK_ENV = 'development'
 $env:GEONAMES_USERNAME = 'your_geonames_username'
 flask run
@@ -57,7 +60,6 @@ flask run
 3. Alternative: you can also run the app with
 ```bash
 export GEONAMES_USERNAME=your_geonames_username
-cd timezones
 python app.py
 ```
 
@@ -81,11 +83,12 @@ Notes and best practices:
 
 ## Project Structure
 
-- `timezones/app.py`: Flask application (routes, form handling, timezone and city-resolution logic).
-- `timezones/templates/index.html`: Main page with the input form and inline results.
-- `timezones/requirements.txt`: Python dependencies.
-- `timezones/tests/test_app.py`: Pytest tests (external HTTP calls are mocked for determinism).
-- `timezones/README.md`: This file.
+- `app.py`: Flask application (routes, form handling)
+- `conversions.py`: timezone and city-resolution logic, time conversion.
+- `templates/index.html`: Main page with the input form and inline results.
+- `requirements.txt`: Python dependencies.
+- `tests/`: Pytest tests.
+- `README.md`: This file.
 
 ## Troubleshooting
 
@@ -106,7 +109,7 @@ Install the test extras (already covered by `requirements.txt`) and run:
 pytest -q
 ```
 
-Tests mock external HTTP calls so they should run without network access.
+Tests should mock external HTTP calls so they should run without network access.
 
 ## Notes for Deploying / Production
 
