@@ -1,6 +1,8 @@
-# VibeTZ — Timezone converter (Flask)
+# Timezones: A timezone converter
 
 A small Flask web app that converts one or more input times into multiple time zones (by IANA timezone ID or city/place name). City/place lookups are resolved server-side on submit using a geocoder + GeoNames timezone service.
+
+Example version running on render at: [https://timezones-5d1h.onrender.com](https://timezones-5d1h.onrender.com)
 
 ## Features
 
@@ -23,7 +25,7 @@ Tips:
 
 ## Quick Start
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/RichardOtt/VibeTZ?quickstart=1)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/thedataincubator/timezones?quickstart=1)
 
 
 1. Create and activate a virtual environment:
