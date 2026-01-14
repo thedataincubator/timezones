@@ -11,9 +11,9 @@ A small Flask web app that converts one or more input times into multiple time z
 
 ## How to Use the App
 
-1. Enter one or more times in the left column (the app accepts `YYYY-MM-DD HH:MM` or similar ISO-like inputs).
+1. Enter one or more times in the first set of boxes (the app accepts `YYYY-MM-DD HH:MM` or similar ISO-like inputs, or use the date picker).
 2. Choose a base timezone (you can type to filter) — this is the timezone of the input times.
-3. Add one or more target entries in the right column; each target can be either an IANA timezone (e.g., `Europe/London`) or a city/place name (e.g., `Mumbai, India`).
+3. Add one or more target entries in the second set of boxes; each target can be either an IANA timezone (e.g., `Europe/London`) or a city/place name (e.g., `Mumbai, India`).
 4. Submit the form to see a grid of converted times. Each cell shows the converted date/time in that timezone.
 
 Tips:
