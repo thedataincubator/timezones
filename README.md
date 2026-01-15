@@ -4,6 +4,9 @@ A small Flask web app that converts one or more input times into multiple time z
 
 Example version running on render at: [https://timezones-5d1h.onrender.com](https://timezones-5d1h.onrender.com)
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/thedataincubator/timezones?quickstart=1)
+
+
 ## Features
 
 - Convert multiple input times at once.
@@ -24,8 +27,6 @@ Tips:
 - If a place lookup is ambiguous, try adding a region/country (e.g., `Springfield, IL` vs `Springfield, MA`).
 
 ## Quick Start
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/thedataincubator/timezones?quickstart=1)
 
 
 1. Create and activate a virtual environment:
