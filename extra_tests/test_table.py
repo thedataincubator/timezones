@@ -15,8 +15,6 @@ def test_index_html_table():
         assert resp.status_code == 200
         html = resp.get_data(as_text=True)
 
-    with open("example_out.html", "w") as f:
-        f.write(html)
     soup = BeautifulSoup(html, 'html.parser')
     dates = soup.select('div.mt-3 tr td div')
     assert len(dates) == 6
