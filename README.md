@@ -90,6 +90,7 @@ Notes and best practices:
 - `conversions.py`: timezone and city-resolution logic, time conversion.
 - `templates/index.html`: Main page with the input form and inline results.
 - `requirements.txt`: Python dependencies.
+- `requirements_dev.txt`: Python dependencies for testing.
 - `tests/`: Pytest tests.
 - `README.md`: This file.
 
@@ -106,10 +107,10 @@ Notes and best practices:
 
 ## Running Tests
 
-Install the test extras (already covered by `requirements.txt`) and run:
+Install the test extras in `requirements_dev.txt` and run:
 
 ```bash
-pytest -q
+pytest
 ```
 
 Tests should mock external HTTP calls so they should run without network access.
