@@ -41,6 +41,7 @@ def index():
         target_timezones = [head[1] for head in headers]
 
         # build matrix rows: each row corresponds to an input time
+        # each column to a timezone (first will be base timezone)
         rows_matrix = convert_times(base_datetimes, target_timezones)
 
         header_labels = [h[0] for h in headers]

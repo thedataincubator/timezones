@@ -39,7 +39,7 @@ This was a lot of back-and-forth with copilot, at least partially because I was 
 1. better, but now the button to remove the added time or target is gray instead of red, and is extending on to the next line
 1. That made things worse. Now the added times and targets are too narrow again, and their buttons are gray. They don't need to be red, they just need to match the default ones
 1. Ok, that's working. Now I want to set up tests. What kind of inputs should we be testing for?
-    1. _I was expecting it to generate a list of big-picture test cases, like "near daylight savings time" or "crossing midnight" or something about weird time zones. Which it basically did, as a bullet list of things to test. It asked if it should make `pytest` code for all of that
+    1. _I was expecting it to generate a list of big-picture test cases, like "near daylight savings time" or "crossing midnight" or something about weird time zones. Which it basically did, as a bullet list of things to test. It asked if it should make `pytest` code for all of that_
 1. yes
 1. There's a prompt missing from my history: I switched to the `weekday` branch here and asked it to print the weekday as well as the date, but I don't have the exact wording
 1. This is displaying the weekday in the base timezone, I need it for each timezone - conversions will often push into the next day

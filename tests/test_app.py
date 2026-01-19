@@ -4,9 +4,11 @@ import pytz
 from datetime import datetime
 import conversions
 
+# This is avoiding city lookup
+# Most basic test of conversions
+# making sure conversion logic is working
 def test_simple_conversion():
-    # This is avoiding city lookup
-    # making sure conversion to timezone objects occurs
+
     base_tz = 'US/Eastern'
     targets = ['US/Pacific', 'Europe/London']
     base_tz_obj = pytz.timezone(base_tz)
