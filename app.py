@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request
+import os
 from datetime import datetime
 import pytz
-from conversions import *
 import requests
-import os
+from flask import Flask, render_template, request
+from conversions import *
+
 
 app = Flask(__name__)
 
@@ -13,7 +14,6 @@ TIMEZONES = pytz.common_timezones
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        time_str = request.form.get('time')
         base_tz = request.form.get('base_tz') or 'UTC'
         # validate base timezone; fall back to UTC if invalid
         try:

@@ -13,7 +13,7 @@ def test_simple_conversion():
     targets = ['US/Pacific', 'Europe/London']
     base_tz_obj = pytz.timezone(base_tz)
 
-    dt = datetime.fromisoformat('2025-12-10T12:00:00')
+    dt = datetime.fromisoformat('2025-12-10T12:00')
     times = [base_tz_obj.localize(dt)]
 
     matrix = conversions.convert_times(times, targets)
