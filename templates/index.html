@@ -22,13 +22,13 @@
               {% for t in times %}
                 <div class="time-row input-group mb-2">
                   <input type="datetime-local" name="times" class="form-control time-input" value="{{ t }}">
-                  <button type="button" class="btn btn-danger" onclick="removeTime(this)">−</button>
+                  <button type="button" class="btn btn-secondary" onclick="removeTime(this)">−</button>
                 </div>
               {% endfor %}
             {% else %}
               <div class="time-row input-group mb-2">
                 <input type="datetime-local" name="times" class="form-control time-input">
-                <button type="button" class="btn btn-danger" onclick="removeTime(this)">−</button>
+                <button type="button" class="btn btn-secondary" onclick="removeTime(this)">−</button>
               </div>
             {% endif %}
           </div>
@@ -44,17 +44,17 @@
               {% for tgt in targets %}
                 <div class="zone-row input-group mb-2">
                   <input list="tz-list" name="targets" class="form-control zone-input" placeholder="Type a timezone or city" value="{{ tgt }}">
-                  <button type="button" class="btn btn-danger" onclick="removeZone(this)">−</button>
+                  <button type="button" class="btn btn-secondary" onclick="removeZone(this)">−</button>
                 </div>
               {% endfor %}
             {% else %}
               <div class="zone-row input-group mb-2">
                 <input list="tz-list" name="targets" class="form-control zone-input" placeholder="Type a timezone or city (e.g. Tokyo or Mumbai, India)">
-                <button type="button" class="btn btn-danger" onclick="removeZone(this)">−</button>
+                <button type="button" class="btn btn-secondary" onclick="removeZone(this)">−</button>
               </div>
               <div class="zone-row input-group mb-2">
                 <input list="tz-list" name="targets" class="form-control zone-input" placeholder="Type a timezone or city (e.g. San Francisco)">
-                <button type="button" class="btn btn-danger" onclick="removeZone(this)">−</button>
+                <button type="button" class="btn btn-secondary" onclick="removeZone(this)">−</button>
               </div>
             {% endif %}
           </div>
@@ -75,8 +75,8 @@
 
       <!-- Results block -->
       {% if headers and rows %}
-      <div class="mt-4">
-        <h2>Results</h2>
+      <div class="mt-5">
+        <h2>Converted times</h2>
         <div class="table-responsive">
           <table class="table table-striped table-bordered">
             <thead>

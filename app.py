@@ -1,9 +1,6 @@
-import os
-from datetime import datetime
 import pytz
-import requests
 from flask import Flask, render_template, request
-from conversions import *
+from conversions import convert_times, times_to_datetimes, get_column_headers
 
 
 app = Flask(__name__)
