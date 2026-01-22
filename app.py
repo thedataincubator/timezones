@@ -25,8 +25,6 @@ def index():
         # collect target entries (either timezone IDs or city/place strings)
         targets = [t.strip() for t in request.form.getlist('targets') if t and t.strip()]
 
-        # resolve targets into header label/tz pairs
-        # headers will be list of (label, tzname_or_none)
         # collect multiple times; empty entries will be treated as 'now' when processing
         times_raw = request.form.getlist('times')
         if not times_raw:
@@ -36,7 +34,9 @@ def index():
         # ignores blank lines
         base_datetimes = times_to_datetimes(base_tz_obj, times_raw)
 
+        # resolve targets into header label/tz pairs
         # build headers: base timezone first, then each target (resolve timezone or city)
+        # headers will be list of (label, tzname_or_none)
         headers = get_column_headers(base_tz, targets)
         target_timezones = [head[1] for head in headers]
 
