@@ -16,7 +16,7 @@ def test_index_html_table():
         html = resp.get_data(as_text=True)
 
     soup = BeautifulSoup(html, 'html.parser')
-    dates = soup.select('div.mt-3 tr td div')
+    dates = soup.select('div.mt-4 tr td div')
     assert len(dates) == 6
     expected_dates = [
         '2025-12-10 12:00:00',
