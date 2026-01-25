@@ -28,6 +28,7 @@ Tips:
 
 ## Quick Start
 
+#### Note: If you started codespaces with the button above, you can skip to step 3
 
 1. Create and activate a virtual environment:
 
@@ -39,13 +40,13 @@ source .venv/bin/activate
 2. Install dependencies:
 
 ```bash
-pip install -r timezones/requirements.txt
+pip install -r requirements.txt
 ```
 
 3. Set environment variables and run the app (Unix/macOS):
 
 ```bash
-export FLASK_APP=timezones/app.py
+export FLASK_APP=app.py
 export FLASK_ENV=development
 export GEONAMES_USERNAME=your_geonames_username
 flask run
@@ -92,6 +93,8 @@ Notes and best practices:
 - `requirements.txt`: Python dependencies.
 - `requirements_dev.txt`: Python dependencies for testing.
 - `tests/`: Pytest tests.
+- `documents/`: markdown files with documents for the Smarter Software Testing course
+- `extra/`: files that will be used in the course
 - `README.md`: This file.
 
 ## Troubleshooting
