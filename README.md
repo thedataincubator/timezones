@@ -94,7 +94,6 @@ Notes and best practices:
 - `requirements_dev.txt`: Python dependencies for testing.
 - `tests/`: Pytest tests.
 - `documents/`: markdown files with documents for the Smarter Software Testing course
-- `extra/`: files that will be used in the course
 - `README.md`: This file.
 
 ## Troubleshooting
