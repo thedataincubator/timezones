@@ -4,3 +4,7 @@
 - Variable names should use snake_case
 - Tests should avoid advanced features like custom case classes and parameterization whenever it's reasonable to do so. Use them only when it's necessary, or avoiding them would produce unnecessarily complex code.
 
+## Development environment
+
+- Development is being done in Codespaces, with the Python environment set up during the startup process.
+- Do not create a virtual environment.  Add dependencies to the requirements.txt or requirements-dev.txt files as appropriate, and install them directly in the current environment.
