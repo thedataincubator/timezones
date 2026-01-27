@@ -3,6 +3,7 @@ import pytest
 import pytz
 from datetime import datetime
 import conversions
+import app
 
 # This is avoiding city lookup
 # Most basic test of conversions
