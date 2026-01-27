@@ -26,3 +26,12 @@ Acceptance criteria:
 - The grid includes a header row for target zones/cities and a first column (or equivalent) for the base time entries
 - Results are visible and inputs remain available on the same page
 - Altering a time or timezone and converting results in a correctly updated grid
+
+# Part 3 Exercise
+
+### Instructions
+- Run `bash updates/third_exercise.py`
+- This creates a new test: `tests/test_headers.py`, that tests the `get_column_headers` function in `conversions.py`
+- Check to see if the tests are passing
+- Diagnose any errors that occur
+- You can also try to repair them
